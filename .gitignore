@@ -4,10 +4,13 @@
 ._*
 .bashrc
 .bash_history
+.bash_logout
 .CFUserTextEncoding
 .dropbox
 .config
 .composer
+.mysql_history
+.php_history
 .pip
 .ssh
 # Everything in the undo dir; only care that it exists
