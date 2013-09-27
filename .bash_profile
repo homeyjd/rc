@@ -1,19 +1,29 @@
 #!/bin/bash
 
-alias edit='open -a TextWrangler'
-alias ls='ls -laG'
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+alias edit='vi'
+alias ls='ls -laG --colors'
 alias mt='multitail -CS php'
 alias grep='grep --color'
 
-alias centos-start='/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T fusion start ~/Documents/Virtual\ Machines.localized/CentOS_64_server.vmwarevm nogui'
-alias centos-stop='/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T fusion stop ~/Documents/Virtual\ Machines.localized/CentOS_64_server.vmwarevm'
-#alias centos='centos-start && ssh ip'
+function tree {
+  find "${1:-.}" -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+}
+
+# CLI Colors
+export CLICOLOR=1
+#export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 source ~/.bash_colors
 
 # -[ Failed with 1 ]
-# -[ jdecker@festus7 ~/Remote (0) 5:36 pm ]
+# -[ user@host ~/dir (0) 5:36 pm ]
 # -[ !33 ] $
+export PS1="\`LAST=\$?; [[ \$LAST -ne 0 && \$LAST -ne \"0\" ]] && echo -e \"\\n\"'\033[0;34m'\"-[ \"'\033[1;37m''\033[41m'\" Failed with \$LAST \"'\033[00m''\033[0;34m'\" ]\"\`\n\[$Blue\]-[ \[$Cyan\]\u\[$Blue\]@\[$Cyan\]\h \[$Yellow\]\w \[$Blue\](\[$BWhite\]\j\[$Blue\]) \[$Red\]\@ \[$Blue\]]\n\[$Blue\]-[ \[$Red\]!\! \[$Blue\]] \[$Red\]$\[$Color_Off\] "
 
-export PS1="\`LAST=\$?; [[ \$LAST -ne 0 && \$LAST -ne \"0\" ]] && echo -e \"\\n\"'\\033[0;34m'\"-[ \"'\\033[1;37m''\033[41m'\" Failed with \$LAST \"'\\033[00m''\\033[0;34m'\" ]\"\`\n\[$Blue\]-[ \[$Cyan\]\u\[$Blue\]@\[$Cyan\]\h \[$Yellow\]\w \[$Blue\](\[$BWhite\]\j\[$Blue\]) \[$Red\]\@ \[$Blue\]]\n-[ \[$Red\]!\! \[$Blue\]] \[$Red\]$\[$Color_Off\] "
-
+# [0] -[ user@host ~/dir 5:36 pm ] $ 
+# export PS1="\n\`LAST=\$?; [[ \$LAST -ne 0 && \$LAST -ne \"0\" ]] && echo -e '\033[1;37m''\033[41m'\"[\$LAST]\"'\033[00m''\033[0;34m'\" \"\`\[$Blue\]-[ \[$Cyan\]\u\[$Blue\]@\[$Cyan\]\h \[$Yellow\]\w \[$Red\]\@ \[$Blue\]] $\[$Color_Off\] "
