@@ -10,8 +10,13 @@ alias ls='ls -laG --colors'
 alias mt='multitail -CS php'
 alias grep='grep --color'
 
-function tree {
-  find "${1:-.}" -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+function tree () {
+	find "${1:-.}" -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+}
+
+function fix_web_perms () {
+	find . -type d -exec chmod 755 {} \;
+	find . -type f -exec chmod 644 {} \;
 }
 
 # CLI Colors
