@@ -9,6 +9,8 @@
 .composer
 .pip
 .ssh
+# Everything in the undo dir; only care that it exists
+.vim/undo
 .viminfo
 Code
 Desktop
