@@ -5,7 +5,6 @@ alias ls='ls -laG --colors'
 alias mt='multitail -CS php'
 alias grep='grep --color'
 
-
 function tree () {
 	find "${1:-.}" -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 }

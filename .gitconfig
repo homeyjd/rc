@@ -1,10 +1,9 @@
 [user]
-	name = Jesse Decker
-	email = me@jessedecker.com
+    name = Jesse Decker
+    email = me@jessedecker.com
 
 [merge]
     conflictstyle = diff3
-
 [color]
     ui = true
     branch = auto
