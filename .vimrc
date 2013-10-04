@@ -51,7 +51,7 @@ set smartcase                   " case-sens when capital letters
 set autoindent                  " keep indenting on <CR>
 set shiftwidth=4                " one tab = four spaces (autoindent)
 set softtabstop=4               " one tab = four spaces (tab key)
-set expandtab                   " never use hard tabs
+"set expandtab                   " never use hard tabs
 set fileformats=unix,dos        " unix linebreaks in new files please
 set listchars=tab:↹·,extends:>,precedes:<,nbsp:␠,trail:␠
                                 " appearance of invisible characters
@@ -92,9 +92,11 @@ set foldlevel=99
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 " Pathogen; load all bundles
-filetype off  " uh, necessary
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+if has("pathogen")
+  filetype off  " uh, necessary
+  call pathogen#runtime_append_all_bundles()
+  call pathogen#helptags()
+endif " has("pathogen")s
 
 " SuperTab; use omni completion by default
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
@@ -181,6 +183,7 @@ endif " has("autocmd")
 " trailing whitespace and column; must define AFTER colorscheme, setf, etc!
 hi ColorColumn ctermbg=black guibg=darkgray
 hi WhitespaceEOL ctermbg=red guibg=red
+hi LineNr ctermfg=grey
 match WhitespaceEOL /\s\+\%#\@<!$/
 
 
