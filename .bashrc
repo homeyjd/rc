@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Mac-only aliases
 alias edit='open -a TextWrangler'
 alias ls='ls -alG'
