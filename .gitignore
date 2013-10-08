@@ -9,6 +9,7 @@
 .config
 .composer
 .gem
+.rnd
 .rvm
 .pip
 .python-eggs
