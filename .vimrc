@@ -28,8 +28,10 @@ fixdel
 set nobackup                    " backups are annoying
 set writebackup                 " temp backup during write
 " TODO: backupdir?
-set undodir=~/.vim/undo         " persistent undo storage
-set undofile                    " persistent undo on
+if version >= 703
+    set undodir=~/.vim/undo         " persistent undo storage
+    set undofile                    " persistent undo on
+endif
 
 " user interface
 set history=50                  " keep 50 lines of command line history
@@ -40,7 +42,9 @@ set number                      " line numbers
 set ruler                       " show the cursor position all the time
 set showcmd                     " display incomplete commands
 set showmatch                   " show matching brackets while typing
-set relativenumber              " line numbers spread out from 0
+if version >= 703
+    set relativenumber              " line numbers spread out from 0
+endif
 set cursorline                  " highlight current line
 
 " regexes
