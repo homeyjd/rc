@@ -9,6 +9,7 @@
 .config
 .composer
 .gem
+.gitconfig
 .rnd
 .rvm
 .pip
