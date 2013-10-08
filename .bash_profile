@@ -1,7 +1,7 @@
 #!/bin/bash
 
 alias edit='vi'
-alias ls='ls -laG --colors'
+alias ls='ls -laG --color'
 alias mt='multitail -CS php'
 alias grep='grep --color'
 
