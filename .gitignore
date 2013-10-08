@@ -2,17 +2,18 @@
 .DS_Store
 *.DS_STORE
 ._*
-.bashrc
+*.swp
 .bash_history
-.bash_logout
 .CFUserTextEncoding
 .dropbox
 .config
 .composer
-.mysql_history
-.php_history
+.gem
+.rvm
 .pip
+.python-eggs
 .ssh
+.vagrant.d
 # Everything in the undo dir; only care that it exists
 .vim/undo
 .viminfo
@@ -27,4 +28,5 @@ Music
 Pictures
 Public
 Remote
+VirtualBox VMs
 vm
