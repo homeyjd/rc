@@ -1,34 +1,21 @@
-.Trash
-.DS_Store
-*.DS_STORE
+# Ignore everything
+*
+
+# Don't ignore directories, so we can recurse into them
+# !*/
+
+# Specifics
+!.gitignore*
+!.gitmodules
+!.hgignore_global
+!.tmux.conf
+!.zshenv
+!.vim/colors/*
+!.bash_*
+
+# Catch-all
+!.*rc
+
 ._*
-*.swp
 .bash_history
-.CFUserTextEncoding
-.dropbox
-.config
-.composer
-.gem
-.gitconfig
-.rnd
-.rvm
-.pip
-.python-eggs
-.ssh
-.vagrant.d
-# Everything in the undo dir; only care that it exists
-.vim/undo
-.viminfo
-Code
-Desktop
-Documents
-Downloads
-Dropbox
-Library
-Movies
-Music
-Pictures
-Public
-Remote
-VirtualBox VMs
-vm
+*/.git*
