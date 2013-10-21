@@ -11,11 +11,11 @@
 !.tmux.conf
 !.zshenv
 !.vim/colors/*
-!.bash_*
+!.bash_profile
+!.bash_colors
 
 # Catch-all
 !.*rc
 
 ._*
-.bash_history
 */.git*
