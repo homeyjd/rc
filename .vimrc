@@ -42,9 +42,9 @@ set number                      " line numbers
 set ruler                       " show the cursor position all the time
 set showcmd                     " display incomplete commands
 set showmatch                   " show matching brackets while typing
-if version >= 703
-    set relativenumber              " line numbers spread out from 0
-endif
+"if version >= 703
+"    set relativenumber              " line numbers spread out from 0
+"endif
 set cursorline                  " highlight current line
 
 " regexes
@@ -53,12 +53,13 @@ set ignorecase                  " useful more often than not
 set smartcase                   " case-sens when capital letters
 
 " whitespace
+set tabstop=4                   " a tab is visualized as 4 spaces
 set autoindent                  " keep indenting on <CR>
 set shiftwidth=4                " one tab = four spaces (autoindent)
 set softtabstop=4               " one tab = four spaces (tab key)
 "set expandtab                   " never use hard tabs
 set fileformats=unix,dos        " unix linebreaks in new files please
-set listchars=tab:↹·,extends:>,precedes:<,nbsp:␠,trail:␠
+set listchars=tab:‣‣,extends:»,precedes:«,nbsp:·,trail:·,eol:␊
                                 " appearance of invisible characters
 
 " wrapping
@@ -98,9 +99,9 @@ set foldlevel=99
 " Plugins
 " Pathogen; load all bundles
 if has("pathogen")
-  filetype off  " uh, necessary
-  call pathogen#runtime_append_all_bundles()
-  call pathogen#helptags()
+    filetype off  " uh, necessary
+    call pathogen#runtime_append_all_bundles()
+    call pathogen#helptags()
 endif " has("pathogen")s
 
 " SuperTab; use omni completion by default
@@ -163,23 +164,23 @@ noremap ,u :GundoToggle<CR>
 " Colors and syntax
 " in GUI or color console, enable coloring and search highlighting
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set background=dark
-  set hlsearch
+    syntax on
+    set background=dark
+    set hlsearch
 endif
 
 set t_Co=256  " force 256 colors
 colorscheme molokai
 
 if has("autocmd")
-  " Filetypes and indenting settings
-  filetype plugin indent on
+    " Filetypes and indenting settings
+    filetype plugin indent on
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  autocmd BufReadPost *
+    " When editing a file, always jump to the last known cursor position.
+    autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
