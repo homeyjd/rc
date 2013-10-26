@@ -5,6 +5,7 @@ alias edit='open -a TextWrangler'
 alias sl='sublime'
 alias ls='ls -alG'
 alias vmrun='/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T fusion'
+alias rsync-git='rsync -avz --exclude .git --exclude "*/.git"'
 
 vm () {
 	local FILE="${*:2}"
