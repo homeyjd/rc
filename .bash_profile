@@ -4,6 +4,7 @@ alias edit='vi'
 alias ls='ls -laG --color'
 alias mt='multitail -CS php'
 alias grep='grep --color'
+alias du-sort="du -k * | sort -nr | cut -f2 | xargs du -sh"
 
 function tree () {
 	find "${1:-.}" -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
