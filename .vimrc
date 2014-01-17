@@ -1,4 +1,5 @@
 " Eevee's vimrc
+" Heavily modified by homeyjd with input from around the interwebs
 
 " vim mode preferred!
 set nocompatible
@@ -143,6 +144,15 @@ noremap <C-Down> <C-W><Down>
 noremap - :tabprevious<CR>
 noremap = :tabnext<CR>
 
+" Map ^s to write current buffer
+noremap <C-S> :w<CR>
+vnoremap <C-S> <C-C>:Update<CR>
+" ignore additional prompt after save in insert mode
+inoremap <C-S> <C-O>:Update<CR><CR>
+
+" Undo in insert mode
+imap <c-z> <c-o>u
+
 " Bind gb to toggle between the last two tabs
 map gb :exe "tabn ".g:ltv<CR>
 function! Setlasttabpagevisited()
@@ -178,6 +188,24 @@ if has("autocmd")
 
     " For all text files set 'textwidth' to 78 characters.
     autocmd FileType text setlocal textwidth=78
+
+    " Large files are > 10M
+    let g:LargeFile = 1024 * 1024 * 10
+    "   eventignore+=FileType (no syntax highlighting etc)
+    "   noswapfile (save copy of file)
+    "   bufhidden=unload (save memory when other file is viewed)
+    "   buftype=nowritefile (is read-only)
+    "   undolevels=-1 (no undo possible)
+    augroup LargeFile
+        autocmd BufReadPre *
+        \ let f=expand("<afile>") |
+        \ if getfsize(f) > g:LargeFile |
+        \   set eventignore+=FileType |
+        \   setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
+        \ else |
+        \   set eventignore-=FileType |
+        \ endif
+    augroup END
 
     " When editing a file, always jump to the last known cursor position.
     autocmd BufReadPost *
