@@ -2,11 +2,10 @@
 
 # Mac-only aliases
 alias edit='open -a TextWrangler'
-alias sl='sublime'
 alias ls='ls -alG'
 alias vmrun='/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T fusion'
 alias fab-cli='fab --set=use_ssh_config'
-alias diffgui='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge'
+alias diffgui='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash'
 alias du-sort="du -kd 1 | sort -nr | cut -f2 | xargs -I '{}' du -sh '{}'"
 
 # Rsync Options
