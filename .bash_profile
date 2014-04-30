@@ -1,7 +1,8 @@
 #!/bin/bash
 
 alias edit='vi'
-alias ls='ls -laGh --color'
+alias ls='ls --color'
+alias ll='ls -lah --color'
 alias mt='multitail -CS php'
 alias grep='grep --color'
 alias du-sort="du -k * | sort -nr | cut -f2 | xargs -I '{}' du -sh '{}'"
