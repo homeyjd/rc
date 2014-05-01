@@ -59,9 +59,12 @@ set autoindent                  " keep indenting on <CR>
 set shiftwidth=4                " one tab = four spaces (autoindent)
 set softtabstop=4               " one tab = four spaces (tab key)
 "set expandtab                   " never use hard tabs
+set copyindent                  " copy indent from the above line
 set fileformats=unix,dos        " unix linebreaks in new files please
 set listchars=tab:‣‣,extends:»,precedes:«,nbsp:·,trail:·,eol:␊
                                 " appearance of invisible characters
+set formatoptions-=o            " Don't add comment prefix
+set formatoptions-=r            " Don't add comment prefix
 
 " wrapping
 "set colorcolumn=+1              " highlight 81st column
@@ -95,6 +98,39 @@ set scrolloff=2                 " always have 2 lines of context on the screen
 set foldmethod=indent           " auto-fold based on indentation.  (py-friendly)
 set foldlevel=99
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Large files and other autocmd stuff
+if has("autocmd")
+
+    " Filetypes and indenting settings
+    filetype plugin indent on
+
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
+
+    " Large files are > 10M
+    let g:LargeFile = 1024 * 1024 * 10
+    "   eventignore+=FileType (no syntax highlighting etc)
+    "   noswapfile (save copy of file)
+    "   bufhidden=unload (save memory when other file is viewed)
+    "   buftype=nowritefile (is read-only)
+    "   undolevels=-1 (no undo possible)
+    augroup LargeFile
+        autocmd BufReadPre *
+        \ let f=expand("<afile>") |
+        \ if getfsize(f) > g:LargeFile |
+        \   set eventignore+=FileType |
+        \   setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
+        \ else |
+        \   set eventignore-=FileType |
+        \ endif
+    augroup END
+
+    augroup Format-Options
+        autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    augroup END
+
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
@@ -183,30 +219,6 @@ set t_Co=256  " force 256 colors
 colorscheme molokai
 
 if has("autocmd")
-    " Filetypes and indenting settings
-    filetype plugin indent on
-
-    " For all text files set 'textwidth' to 78 characters.
-    autocmd FileType text setlocal textwidth=78
-
-    " Large files are > 10M
-    let g:LargeFile = 1024 * 1024 * 10
-    "   eventignore+=FileType (no syntax highlighting etc)
-    "   noswapfile (save copy of file)
-    "   bufhidden=unload (save memory when other file is viewed)
-    "   buftype=nowritefile (is read-only)
-    "   undolevels=-1 (no undo possible)
-    augroup LargeFile
-        autocmd BufReadPre *
-        \ let f=expand("<afile>") |
-        \ if getfsize(f) > g:LargeFile |
-        \   set eventignore+=FileType |
-        \   setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
-        \ else |
-        \   set eventignore-=FileType |
-        \ endif
-    augroup END
-
     " When editing a file, always jump to the last known cursor position.
     autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
