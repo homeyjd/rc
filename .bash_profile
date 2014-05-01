@@ -11,11 +11,14 @@ function tree () {
 	find "${1:-.}" -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 }
 
-
+# Set default permissions for a web directory
+# Allow folder/file g+w and file ug+x if set
 function fix_web_perms () {
-	find . -type d -exec chmod 755 {} \;
-	find . -type f -exec chmod 644 {} \;
+	find . -type d -exec chmod +x,+r,u+w,o-w {} \;
+	find . -type f -exec chmod +r,u+w,o-wx {} \;
 }
+
+export EDITOR=vim
 
 # CLI Colors
 export CLICOLOR=1
