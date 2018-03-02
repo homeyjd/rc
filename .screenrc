@@ -1,3 +1,15 @@
+startup_message off # Turn off the splash screen
+
+autodetach on # Autodetach session on hangup instead of terminating screen completely
+
+defscrollback 2000 # Use a long scrollback buffer
+termcapinfo xterm ti@:te@
+# From http://www4.informatik.uni-erlangen.de/~jnweiger/screen-faq.html
+# Q: My xterm scrollbar does not work with screen.
+# A: The problem is that xterm will not allow scrolling if the alternate text buffer is selected.
+#    The standard definitions of the termcap initialize capabilities ti and te switch to and from
+#    the alternate text buffer. (The scrollbar also does not work when you start e.g. ‘vi’).
+
 caption always "%{= kw}%?%-Lw%?%{Kw}%n*%f %t%?(%u)%?%{kw}%?%+Lw%? %=%{= dw} %H "
 
 # terminfo and termcap for nice 256 color terminal

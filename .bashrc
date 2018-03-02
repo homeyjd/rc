@@ -2,14 +2,18 @@
 
 # Mac-only aliases
 alias edit='open -a TextWrangler'
-alias ls='ls -alGh'
+alias ll='\ls -AlhF'
+alias l='ll'
 alias vmrun='/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T fusion'
 alias fab-cli='fab --set=use_ssh_config'
 alias diffgui='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash'
 alias du-sort="du -kd 1 | sort -nr | cut -f2 | xargs -I '{}' du -sh '{}'"
+alias screensave="open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/Current/Resources/ScreenSaverEngine.app"
+alias diff=colordiff
+alias phpunit="phpunit --colors"
 
 # Rsync Options
-alias rsync-git='rsync -rlptOvz --exclude .git --exclude .idea --exclude .workspace --exclude .project --exclude .DS_Store --exclude .settings'
+alias rsync-git='rsync -rlvztOi --exclude .git --exclude .idea --exclude .workspace --exclude .project --exclude .DS_Store --exclude .settings'
 #-H = hard links
 #-O = leave dir time
 #-v = list files as transfer
@@ -35,7 +39,7 @@ sync() {
 	# List all sites that should be synced to vm
 	#dmv.org)
 	*)
-		rsync-git ~/Code/"$1/" "$dest:/opt/src/$1/"
+		rsync-git --exclude vendor/ --exclude node_modules/ --exclude '*/node_modules/' ~/Code/"$1/" "$dest:/opt/src/$1/"
 	;;
 	esac
 }
@@ -49,7 +53,8 @@ vm () {
 	fi
 }
 
-export PATH=~/bin:$PATH
+export PATH=~/bin:/usr/local/sbin:$PATH
+export TZ=America/Los_Angeles
 
 #export PS1="\`LAST=\$?; [[ \$LAST -ne 0 && \$LAST -ne \"0\" ]] && echo -e \"\\n\"'\033[0;34m'\"-[ \"'\033[1;37m''\033[41m'\" Failed with \$LAST \"'\033[00m''\033[0;34m'\" ]\"\`\n\[$Blue\]-[ \[$Cyan\]\u\[$Blue\]@\[$Cyan\]\h \[$Yellow\]\w \[$Blue\](\[$BWhite\]\j\[$Blue\]) \[$Red\]\@ \[$Blue\]]\n\[$Blue\]-[ \[$Red\]!\! \[$Blue\]] \[$Red\]$\[$Color_Off\] "
 
